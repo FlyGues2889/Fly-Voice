@@ -1,0 +1,247 @@
+/*总体样式 */
+
+html,
+body,
+mdui-layout {
+  width: 100vw;
+  height: 100vh;
+
+  font-family: 'HarmonyOS Sans SC', sans-serif;
+
+  user-select: none;
+}
+
+:root {
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.4rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #E2E2E5aa;
+    border-radius: 1rem;
+    /* 滑块圆角 */
+  }
+}
+
+div#settingPage {
+
+  mdui-select,
+  mdui-text-field {
+    line-height: 1.375rem;
+    font-family: 'Product Sans';
+    max-width: 16em;
+  }
+}
+
+mdui-tabs::part(container) {
+  margin-bottom: 0.5rem;
+  background-color: unset;
+}
+
+span[slot="description"] {
+  /* opacity: 0.6; */
+  color: rgb(var(--mdui-color-secondary));
+  font-size: small;
+}
+
+
+/* 主窗口控件 */
+mdui-top-app-bar {
+  height: 3rem;
+  margin-left: 1rem;
+
+  align-items: center;
+  background-color: #00000000;
+  color: rgb(var(--mdui-color-primary));
+
+  -webkit-app-region: drag;
+
+  mdui-top-app-bar-title {
+    opacity: 0.8;
+    font-size: small;
+    -webkit-app-region: drag;
+    user-select: none;
+
+    font-family: 'Product Sans';
+  }
+
+  mdui-button-icon {
+    transform: scale(0.7);
+    color: rgb(var(--mdui-color-primary));
+  }
+}
+
+div.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 0rem 0rem 7rem;
+  padding: 0 3rem;
+  background-color: rgb(var(--mdui-color-surface));
+
+  overflow: auto;
+  min-height: 600px;
+
+  font-family: 'Harmony Sans SC';
+
+  div.page-container {
+    margin: 1rem 0rem;
+    margin-bottom: 6rem;
+  }
+}
+
+h1 {
+  user-select: none;
+  font-weight: normal;
+
+  font-family: 'Harmony Sans SC M';
+}
+
+mdui-snackbar {
+  margin-left: 6rem;
+  margin-bottom: 1.6rem;
+  border-radius: var(--mdui-shape-corner-medium);
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* 设置页 */
+
+mdui-card.container {
+  margin: 0rem;
+  padding: 1rem;
+
+  width: 100%;
+  border-radius: 2rem;
+  background-color: rgb(var(--mdui-color-secondary-container), 0.3);
+}
+
+.tips-content {
+  padding: 0.2rem;
+}
+
+div#settingPage {
+  mdui-list-subheader {
+    font-size: medium;
+    color: rgb(var(--mdui-color-primary));
+    font-family: 'Harmony Sans SC M';
+  }
+}
+
+div.showList {
+  width: 100%;
+  height: calc(100vh - 240px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-wrap;
+
+  transition: all 0.3s cubic-bezier(0.28, 0.02, 0.45, 0.98);
+}
+
+mdui-card.viewCard {
+  transition: all 0.1s;
+}
+
+mdui-bottom-app-bar {
+  position: fixed;
+  bottom: 0;
+  margin-left: 14rem;
+
+  background-color: #00000000;
+  box-shadow: none;
+}
+
+mdui-navigation-rail {
+  background-color: rgb(var(--mdui-color-secondary-container), 0.2);
+
+  mdui-button-icon[slot="bottom"] {
+    margin-bottom: 1.2rem;
+  }
+}
+
+div.overviewList {
+  max-height: calc(100vh - 11rem);
+  overflow: auto;
+
+  scrollbar-color: rgb(var(--mdui-color-primary), 0.2) #00000000;
+}
+
+div#mainPage {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  font-family: 'Product Sans';
+  font-weight: light;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+  text-align: center;
+}
+
+.waveform-container {
+  height: 300px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.meter {
+  width: 3rem;
+  margin: 0 0.5rem;
+  background: rgb(var(--mdui-color-primary));
+  border-radius: 2rem;
+
+  transition: height 0.1s ease;
+}
+
+.db-display {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.permission-prompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(var(--mdui-color-surface));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.permission-button {
+  margin-top: 1rem;
+
+  background: rgb(var(--mdui-color-primary));
+  cursor: pointer;
+}
+
+div#settingPage{
+  text-align: left;
+}
