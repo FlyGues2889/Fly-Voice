@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "flyvoice",
+  "version": "1.0.0",
+  "identifier": "com.flyvoice.build",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "FlyVoice",
+        "width": 800,
+        "height": 600,
+        "decorations": false,
+        "transparent": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "nsis",
+    "icon": [
+      "../src/assets/appIcon.ico"
+    ],
+    "category": "Utility",
+    "shortDescription": "声音可视化工具",
+    "longDescription": "使用 Tauri 开发的 Material You 风格的声音可视化工具。",
+    "windows": {
+      "wix": {
+        "language": "zh-CN"
+      },
+      "nsis": {
+        "languages": [
+          "SimpChinese",
+          "English"
+        ],
+        "displayLanguageSelector": true
+      }
+    }
+  }
+}

@@ -1,0 +1,229 @@
+/*总体样式 */
+
+html,
+body,
+mdui-layout {
+  width: 100vw;
+  height: 100vh;
+
+  font-family: 'HarmonyOS Sans SC', sans-serif;
+
+  user-select: none;
+}
+
+:root {
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.4rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #E2E2E5aa;
+    border-radius: 1rem;
+    /* 滑块圆角 */
+  }
+}
+
+span[slot="description"] {
+  /* opacity: 0.6; */
+  color: rgb(var(--mdui-color-secondary));
+  font-size: small;
+}
+
+
+/* 主窗口控件 */
+mdui-top-app-bar {
+  height: 3rem;
+
+  align-items: center;
+  background-color: #00000000;
+  color: rgb(var(--mdui-color-primary));
+
+  -webkit-app-region: drag;
+
+  mdui-top-app-bar-title {
+    font-size: medium;
+    -webkit-app-region: drag;
+    user-select: none;
+
+    font-family: 'Product Sans';
+
+    color: rgb(var(--mdui-color-primary));
+  }
+
+  mdui-button-icon {
+    margin: 0;
+    transform: scale(0.7);
+    color: rgb(var(--mdui-color-primary));
+  }
+}
+
+div.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 0rem 0rem 7rem;
+  padding: 0 3rem;
+  background-color: rgb(var(--mdui-color-secondary-container), 0.2);
+
+  overflow: auto;
+  min-height: 600px;
+
+  font-family: 'Harmony Sans SC';
+
+  div.page-container {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+mdui-bottom-app-bar {
+  position: fixed;
+  bottom: 0;
+
+  background-color: #00000000;
+  box-shadow: none;
+
+  color: rgb(var(--mdui-color-primary));
+}
+
+div#mainPage {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  font-family: 'Harmony Sans SC M';
+  font-weight: light;
+}
+
+.waveform-container {
+  height: 6rem;
+
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -8rem);
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.meter {
+  width: 0.8rem;
+
+  opacity: 1;
+  background: rgb(var(--mdui-color-secondary));
+
+  margin: 0 0.1rem;
+  border-radius: 10rem;
+  transition: height 0.05s cubic-bezier(0.28, 0.02, 0.45, 0.98);
+}
+
+.db-display {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.permission-prompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(var(--mdui-color-surface));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.permission-button {
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.circle-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-6rem);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.bkg-circle {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: rgb(var(--mdui-color-primary),0.1);
+  transition: all 0.15s cubic-bezier(0.28, 0.02, 0.45, 0.98);
+
+  margin: 0 auto;
+}
+
+.show-circle {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: rgb(var(--mdui-color-primary));
+  transition: all 0.01s cubic-bezier(0.28, 0.02, 0.45, 0.98);
+
+  margin: 0 auto;
+}
+
+
+div.bottom-text {
+  width: 100vw;
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+
+  text-align: center;
+
+  color: rgb(var(--mdui-color-secondary));
+
+  p {
+    font-size: small;
+    color: rgb(var(--mdui-color-secondary),0.5);
+  }
+}
+
+mdui-list-item {
+  max-width: 28rem;
+  font-size: small;
+
+  margin: 0.5rem 0;
+
+  color: rgb(var(--mdui-color-secondary));
+}
+
+#db-value {
+  font-family: 'Product Sans';
+}

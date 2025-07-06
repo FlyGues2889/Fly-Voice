@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="defaultTheme">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FlyVoice</title>
+
+    <script src="./mdui/mdui.global.js"></script>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/mdui.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <script defer src="index.js"></script>
+    <script src="tauri.js"></script>
+    <script src="settings.js"></script>
+    <script src="voice.js"></script>
+</head>
+
+<body id="body" class="mdui-theme-auto" style="margin: 0;">
+    <mdui-layout style="height: 100vh;">
+        <mdui-top-app-bar class="topBar" data-tauri-drag-region>
+            <mdui-button-icon>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M14 20.725v-2.05q2.25-.65 3.625-2.5t1.375-4.2t-1.375-4.2T14 5.275v-2.05q3.1.7 5.05 3.138T21 11.975t-1.95 5.613T14 20.725M3 15V9h4l5-5v16l-5-5zm11 1V7.95q1.175.55 1.838 1.65T16.5 12q0 1.275-.663 2.363T14 16m-4-7.15L7.85 11H5v2h2.85L10 15.15zM7.5 12" />
+                </svg></mdui-button-icon>
+            <mdui-top-app-bar-title>FlyVoice</mdui-top-app-bar-title>
+            <div style="flex-grow: 1"></div>
+            <mdui-button-icon id="titlebar-minimize">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M7 21q-.425 0-.712-.288T6 20t.288-.712T7 19h10q.425 0 .713.288T18 20t-.288.713T17 21z" />
+                </svg>
+            </mdui-button-icon>
+            <mdui-button-icon id="titlebar-maximize">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm0-2h14V5H5zm0 0V5z" />
+                </svg>
+            </mdui-button-icon>
+            <mdui-button-icon id="titlebar-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z" />
+                </svg>
+            </mdui-button-icon>
+        </mdui-top-app-bar>
+
+
+        <div class="page" id="mainPage">
+            <div class="page-container">
+                <div class="circle-container" id="circle-container">
+                    <div class="bkg-circle" id="bkgCircle"></div>
+                    <div class="show-circle" id="showCircle"></div>
+                </div>
+
+                <div class="permission-prompt" id="permission-prompt">
+                    <svg style="color: rgb(var(--mdui-color-secondary));margin: 3.6rem;"
+                        xmlns="http://www.w3.org/2000/svg" width="64" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 14q-1.25 0-2.125-.875T9 11V5q0-1.25.875-2.125T12 2t2.125.875T15 5v6q0 1.25-.875 2.125T12 14m-1 6v-2.075q-2.3-.325-3.937-1.95t-1.988-3.95q-.05-.425.225-.725T6 11t.713.288T7.1 12q.35 1.75 1.738 2.875T12 16q1.8 0 3.175-1.137T16.9 12q.1-.425.388-.712T18 11t.7.3t.225.725q-.35 2.275-1.975 3.925T13 17.925V20q0 .425-.288.713T12 21t-.712-.288T11 20" />
+                    </svg>
+                    我们需要你的麦克风权限来获取声音输入
+                    <mdui-list-item rounded>
+                        <svg slot="icon" style="color: rgb(var(--mdui-color-secondary));" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 24">
+                            <path fill="currentColor"
+                                d="M10 16h4q.425 0 .713-.288T15 15v-3q0-.425-.288-.712T14 11v-1q0-.825-.587-1.412T12 8t-1.412.588T10 10v1q-.425 0-.712.288T9 12v3q0 .425.288.713T10 16m1-5v-1q0-.425.288-.712T12 9t.713.288T13 10v1zm1 10.9q-.175 0-.325-.025t-.3-.075Q8 20.675 6 17.637T4 11.1V6.375q0-.625.363-1.125t.937-.725l6-2.25q.35-.125.7-.125t.7.125l6 2.25q.575.225.938.725T20 6.375V11.1q0 3.5-2 6.538T12.625 21.8q-.15.05-.3.075T12 21.9m0-2q2.6-.825 4.3-3.3t1.7-5.5V6.375l-6-2.25l-6 2.25V11.1q0 3.025 1.7 5.5t4.3 3.3m0-7.9" />
+                        </svg>
+                        <span slot="description">
+                            任何信息都不会被保存，声音仅用于音频响度可视化
+                        </span>
+                    </mdui-list-item>
+                    <mdui-button class="permission-button" id="permission-button" variant="tonal">
+                        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z" />
+                        </svg>
+                        获取请求
+                    </mdui-button>
+                </div>
+
+                <div class="waveform-container">
+                    <div class="waveform" id="waveform"></div>
+                </div>
+                <div class="bottom-text">
+                    <div class="db-display">
+                        <span id="db-value">-</span><br> 音量输入值<br>
+                    </div>
+                    <p>这取决于收录到麦克风的最大输入音量，而非真实的声音音量</p>
+                </div>
+
+            </div>
+        </div>
+    </mdui-layout>
+</body>
+
+</html>
